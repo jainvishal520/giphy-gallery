@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LightBox from "./LightBox";
-
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 const TiledGallery = ({ images, galleryError }) => {
   const [displayLightbox, setDisplayLightbox] = useState(false);
   const [currentImage, setCurrentImage] = useState();
@@ -56,14 +56,20 @@ const TiledGallery = ({ images, galleryError }) => {
               );
             })}
           </div>
-          {displayLightbox && (
-            <LightBox
-              closeLighBox={closeLighBox}
-              currentImage={currentImage}
-              showPrev={showPrev}
-              showNext={showNext}
-            />
-          )}
+          <ReactCSSTransitionGroup
+            transitionName="lightbox"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
+          >
+            {displayLightbox && (
+              <LightBox
+                closeLighBox={closeLighBox}
+                currentImage={currentImage}
+                showPrev={showPrev}
+                showNext={showNext}
+              />
+            )}
+          </ReactCSSTransitionGroup>
         </>
       )}
     </div>

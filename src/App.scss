@@ -62,3 +62,19 @@
   font-size: 26px;
   cursor: pointer;
 }
+
+.lightbox-enter {
+  opacity: 0.01;
+  &.lightbox-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+}
+
+.lightbox-leave {
+  opacity: 1;
+  &.lightbox-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+}
