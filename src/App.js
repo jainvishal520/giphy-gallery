@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { GIPHY_SECRET_KEY } from "./constants.js";
 import TiledGallery from "./components/TiledGallery";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { IconContext } from "react-icons";
 function App() {
   const [images, setImages] = useState([]);
   const [galleryError, setGalleryError] = useState(null);
@@ -28,10 +29,12 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <h2>Giphy Gallery App</h2>
-      <ErrorBoundary>
-        <TiledGallery galleryError={galleryError} images={images} />
-      </ErrorBoundary>
+      <IconContext.Provider value={{ className: "react-icons" }}>
+        <h2>Giphy Gallery App</h2>
+        <ErrorBoundary>
+          <TiledGallery galleryError={galleryError} images={images} />
+        </ErrorBoundary>
+      </IconContext.Provider>
     </div>
   );
 }
