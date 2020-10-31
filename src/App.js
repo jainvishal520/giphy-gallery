@@ -1,7 +1,8 @@
-import "./App.css";
+import "./App.scss";
 import { useState, useEffect } from "react";
 import { GIPHY_SECRET_KEY } from "./constants.js";
 import TiledGallery from "./components/TiledGallery";
+import ErrorBoundary from "./components/ErrorBoundary";
 function App() {
   const [images, setImages] = useState([]);
   const [galleryError, setGalleryError] = useState(null);
@@ -28,7 +29,9 @@ function App() {
   return (
     <div className="App">
       <h2>Giphy Gallery App</h2>
-      <TiledGallery galleryError={galleryError} images={images} />
+      <ErrorBoundary>
+        <TiledGallery galleryError={galleryError} images={images} />
+      </ErrorBoundary>
     </div>
   );
 }
